@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`transform attributes 1`] = `
+Object {
+  "description": "description",
+  "title": "title",
+}
+`;
+
+exports[`transform html 1`] = `
+"<h1 id=\\"h1 header\\"><a href=\\"#h1 header\\"></a>h1 header</h1>
+<p>this is h1 content</p>
+<h2 id=\\"h1-1 header\\"><a href=\\"#h1-1 header\\"></a>h1-1 header</h2>
+<p>this is h1-1 content</p>
+<ul>
+<li>list1</li>
+<li>list2</li>
+</ul>
+<h1 id=\\"h2 header\\"><a href=\\"#h2 header\\"></a>h2 header</h1>
+<p>this is h2 content</p>
+<h2 id=\\"h2-1 header\\"><a href=\\"#h2-1 header\\"></a>h2-1 header</h2>
+<p>this is h2-1 content</p>
+"
+`;
+
+exports[`transform nestedHeaders 1`] = `
+Array [
+  Object {
+    "children": Array [
+      Object {
+        "children": Array [],
+        "level": 2,
+        "title": "h1-1 header",
+      },
+    ],
+    "level": 1,
+    "title": "h1 header",
+  },
+  Object {
+    "children": Array [
+      Object {
+        "children": Array [],
+        "level": 2,
+        "title": "h2-1 header",
+      },
+    ],
+    "level": 1,
+    "title": "h2 header",
+  },
+]
+`;
