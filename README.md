@@ -2,8 +2,8 @@
 
 A plugin to transfrom markdown to html in your vite project
 
-[Demo](https://wizardpisces.github.io/blog/vite%20%E7%AE%80%E4%BB%8B%E4%B8%8E%E5%8E%9F%E7%90%86)
-[Demo Project Path](https://github.com/wizardpisces/vite-site)
+* [Demo](https://wizardpisces.github.io/blog/vite%20%E7%AE%80%E4%BB%8B%E4%B8%8E%E5%8E%9F%E7%90%86)
+* [Demo Project Path](https://github.com/wizardpisces/vite-site)
 ## Setup
 
 Install
