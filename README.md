@@ -61,7 +61,7 @@ markdownIt?: MarkdownIt.Options
 // highlight code example
 
 import md2HtmlPlugin from 'vite-plugin-md2html'
-const hljs = require('highlight.js');
+import hljs from 'highlight.js';
 let options = {
     markdownIt: {
         html: true,
@@ -89,7 +89,7 @@ export default {
 [Nested header demo](https://wizardpisces.github.io/blog/vite%20%E7%AE%80%E4%BB%8B%E4%B8%8E%E5%8E%9F%E7%90%86)
 
 ```ts
-import {nestedHeaders, html} from './introduction.md
+import {nestedHeaders} from './introduction.md
 
 /**
  * transform md headers to nested
