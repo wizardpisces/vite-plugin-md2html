@@ -93,25 +93,26 @@ import {nestedHeaders} from './introduction.md
 
 /**
  * transform md headers to nested
+let hList = [ {level:1}, {level:2}, {level:3}, {level:2}, {level:3}, {level:1}, {level:4}]
+let nestedHeaders = createNestedHList(hList); 
 [
-    [
-        {
-            level: 1,
-            children: [
-                { level: 2 },
-                {
-                    level: 2,
-                    children: [{ level: 3 }]
-                }
-            ]
-        }
-    ],
-    [
-        { 
-            level: 2, 
-            children: [{ level: 4 }] 
-        }
-    ]
+    {
+        level: 1,
+        children: [
+            {
+                level: 2,
+                children: [{ level: 3 }]
+            },
+            {
+                level: 2,
+                children: [{ level: 3 }]
+            }
+        ]
+    },
+    { 
+        level: 1, 
+        children: [{ level: 4 }] 
+    }
 ]
 */
 ```

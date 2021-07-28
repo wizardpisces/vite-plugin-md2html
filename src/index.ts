@@ -33,33 +33,33 @@ class ExportedContent {
 }
 
 /**
- *  let hList = [ {level:1}, {level:2}, {level:2}, {level:3}, {level:2}, {level:4}]
- *  let nestedHeaders = createNestedHList(hList); 
- * [
-    [
-        {
-            level: 1,
-            children: [
-                { level: 2 },
-                {
-                    level: 2,
-                    children: [{ level: 3 }]
-                }
-            ]
-        }
-    ],
-    [
-        { 
-            level: 2, 
-            children: [{ level: 4 }] 
-        }
-    ]
+let hList = [ {level:1}, {level:2}, {level:3}, {level:2}, {level:3}, {level:1}, {level:4}]
+let nestedHeaders = createNestedHList(hList); 
+[
+    {
+        level: 1,
+        children: [
+            {
+                level: 2,
+                children: [{ level: 3 }]
+            },
+            {
+                level: 2,
+                children: [{ level: 3 }]
+            }
+        ]
+    },
+    { 
+        level: 1, 
+        children: [{ level: 4 }] 
+    }
 ]
  */
 
 export function createNestedHList(hList: HItem[]): NestedHList {
   if (!hList.length) return []
 
+  // transform HItem to NestedHItem
   let nestedHeaders: NestedHItem[] = hList.map(h => {
     return {
       ...h,
@@ -67,34 +67,40 @@ export function createNestedHList(hList: HItem[]): NestedHList {
     }
   })
 
-  let prevHItem = nestedHeaders[0]
-  let prevChildren: NestedHList = prevHItem.children
-  let rootNestedHeaders: NestedHList = [prevHItem]
+  // create virtual rootHeader as root Header
+  let rootHeader: NestedHItem = {
+    level: 0,
+    title: 'void',
+    children: []
+  }
 
-  // 标记是否在第一层，如果是，那么对于 level 相等的情况则需要 用 rootNestedHeaders push
-  let inRootChildren = true;
+  let prevHItem = rootHeader
+  let visited: NestedHItem[] = [rootHeader]
 
-  nestedHeaders.slice(1).forEach((curHItem) => {
-    if (prevHItem.level < curHItem.level) {
-      prevChildren = prevHItem.children
-      prevChildren.push(curHItem)
-      prevHItem = curHItem
-      inRootChildren = false
-    } else if (prevHItem.level === curHItem.level) {
-      if (inRootChildren) {
-        rootNestedHeaders.push(curHItem)
-      } else {
-        prevChildren.push(curHItem)
+  // search visited from end to start, to find closest parent
+  const findClosestParent = (hItem: NestedHItem): NestedHItem => {
+    for (let len = visited.length, i = len - 1; i >= 0; i--) {
+      if (visited[i].level < hItem.level) {
+        return visited[i]
       }
-      prevHItem = curHItem
-    } else if (prevHItem.level > curHItem.level) {
-      rootNestedHeaders.push(curHItem)
-      prevHItem = curHItem
-      inRootChildren = true
     }
+    // add to elimilate ts error hint
+    return visited[0]
+  }
+
+  nestedHeaders.forEach((curHItem) => {
+    if (prevHItem.level < curHItem.level) {
+      prevHItem.children.push(curHItem)
+      prevHItem = curHItem
+    } else if (prevHItem.level >= curHItem.level) {
+      let closestParent: NestedHItem = findClosestParent(curHItem)
+      closestParent.children.push(curHItem)
+      prevHItem = curHItem
+    }
+    visited.push(curHItem)
   })
 
-  return rootNestedHeaders
+  return rootHeader.children
 }
 
 export function createMarkdown2HtmlMetadata(code: string, options: MarkdownOptions = { html: true }) {

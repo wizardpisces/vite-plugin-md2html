@@ -8,18 +8,24 @@ Object {
 `;
 
 exports[`transform html 1`] = `
-"<h1 id=\\"h1 header\\"><a href=\\"#h1 header\\"></a>h1 header</h1>
+"<h1 id=\\"h1\\"><a href=\\"#h1\\"></a>h1</h1>
 <p>this is h1 content</p>
-<h2 id=\\"h1-1 header\\"><a href=\\"#h1-1 header\\"></a>h1-1 header</h2>
-<p>this is h1-1 content</p>
+<h2 id=\\"h2\\"><a href=\\"#h2\\"></a>h2</h2>
+<p>this is h2 content</p>
 <ul>
 <li>list1</li>
 <li>list2</li>
 </ul>
-<h1 id=\\"h2 header\\"><a href=\\"#h2 header\\"></a>h2 header</h1>
-<p>this is h2 content</p>
-<h2 id=\\"h2-1 header\\"><a href=\\"#h2-1 header\\"></a>h2-1 header</h2>
-<p>this is h2-1 content</p>
+<h3 id=\\"h3\\"><a href=\\"#h3\\"></a>h3</h3>
+<p>h3</p>
+<h2 id=\\"h2\\"><a href=\\"#h2\\"></a>h2</h2>
+<p>h2</p>
+<h3 id=\\"h3\\"><a href=\\"#h3\\"></a>h3</h3>
+<p>h3</p>
+<h1 id=\\"h1\\"><a href=\\"#h1\\"></a>h1</h1>
+<p>h1</p>
+<h2 id=\\"h2\\"><a href=\\"#h2\\"></a>h2</h2>
+<p>h2</p>
 "
 `;
 
@@ -28,24 +34,41 @@ Array [
   Object {
     "children": Array [
       Object {
-        "children": Array [],
+        "children": Array [
+          Object {
+            "children": Array [],
+            "level": 3,
+            "title": "h3",
+          },
+        ],
         "level": 2,
-        "title": "h1-1 header",
+        "title": "h2",
+      },
+      Object {
+        "children": Array [
+          Object {
+            "children": Array [],
+            "level": 3,
+            "title": "h3",
+          },
+        ],
+        "level": 2,
+        "title": "h2",
       },
     ],
     "level": 1,
-    "title": "h1 header",
+    "title": "h1",
   },
   Object {
     "children": Array [
       Object {
         "children": Array [],
         "level": 2,
-        "title": "h2-1 header",
+        "title": "h2",
       },
     ],
     "level": 1,
-    "title": "h2 header",
+    "title": "h1",
   },
 ]
 `;
