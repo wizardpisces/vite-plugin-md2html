@@ -90,29 +90,39 @@ export default {
 
 ```ts
 import {nestedHeaders} from './introduction.md
-
-/**
- * transform md headers to nested
-let hList = [ {level:1}, {level:2}, {level:3}, {level:2}, {level:3}, {level:1}, {level:4}]
-let nestedHeaders = createNestedHList(hList); 
+```
+```json
+// nestedHeaders example
 [
     {
         level: 1,
+        title: "h1",
         children: [
             {
                 level: 2,
-                children: [{ level: 3 }]
+                title: "h2",
+                children: [{ 
+                  level: 3,
+                  title: "h3"
+                }]
             },
             {
                 level: 2,
-                children: [{ level: 3 }]
+                title: "h2",
+                children: [{ 
+                  level: 3 ,
+                  title: "h3"
+                }]
             }
         ]
     },
     { 
         level: 1, 
-        children: [{ level: 4 }] 
+        title: "h1",
+        children: [{ 
+          level: 2 ,
+          title: "h2"
+        }] 
     }
 ]
-*/
 ```
