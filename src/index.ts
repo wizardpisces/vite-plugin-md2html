@@ -15,6 +15,12 @@ export interface PluginOptions {
   markdownIt?: MarkdownOptions
 }
 
+
+export type Md2HtmlExports = {
+  attributes: Record<string, any>;
+  html: string;
+  nestedHeaders: NestedHList
+}
 class ExportedContent {
   _exports: string[] = []
   _contextCode = ''
@@ -103,7 +109,7 @@ export function createNestedHList(hList: HItem[]): NestedHList {
   return rootHeader.children
 }
 
-export function createMarkdown2HtmlMetadata(code: string, options: MarkdownOptions = { html: true }) {
+export function createMarkdown2HtmlMetadata(code: string, options: MarkdownOptions = { html: true }): Md2HtmlExports {
   let fmContent = fm<Record<string, any>>(code)
   const html = new MarkdownIt(options).render(fmContent.body)
   const rootDom = parseDocument(html)
